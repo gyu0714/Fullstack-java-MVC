@@ -28,7 +28,7 @@ public class StudentController {
 				EndView.printFail("등록 실패");
 			}
 		}else if(reqNumber == 4) {
-			StudentModel.delete("Busan");
+			StudentModel.delete("Python");
 		}else if(reqNumber == 5) {
 			EndView.printOne(StudentModel.updateAge("Java"));
 		}

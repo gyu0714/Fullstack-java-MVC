@@ -67,12 +67,9 @@ public class StudentModel {
 	public static boolean delete(String name) {
 		for (int i = 0; i < allData.length; i++) {
 			if(allData[i] != null && allData[i].getName().equals(name)) {
-				allData[i].setName(null);
+				allData[i] = null;
 				return true;
-			} else {
-				System.out.println("존재하는 student 없음");
-				return false;
-			}
+			} 
 		}
 		return false;
 	}
@@ -81,7 +78,7 @@ public class StudentModel {
 	public static Student updateAge(String name) {
 		for (int i = 0; i < allData.length; i++) {
 			if(allData[i] != null && allData[i].getName().equals(name)) {
-				allData[i].setAge(i +1);
+				allData[i].setAge(allData[i].getAge() + 1);
 				return allData[i];
 			}
 		}
