@@ -18,11 +18,16 @@ public class StudentModel {
 	
 	// 모든 학생 검색
 	public static Student[] getAll() {
-		return null;
+		return allData;
 	}
 	
-	// 한 학생의 정보만 검색
+	// 한 학생의 정보만 검색 : 이름이 존재하면 -> return
 	public static Student getOne(String name) {
+		for(int i = 0; i < allData.length; i++) {
+			if(allData[i] != null && allData[i].getName().equals(name)) {
+				return allData[i];
+			}
+		}
 		return null;
 	}
 	
@@ -33,6 +38,13 @@ public class StudentModel {
 	 * 	- 고려사항 2 : 매개변수 값으로 Student 객체 -> 배열에 저장
 	 */
 	public static boolean insert(Student student) {
+		for (int i = 0; i < allData.length; i++) {
+			if(allData[i] == null && i <= 5) {
+				System.out.println(student);
+				allData[i] = student;
+				return true;
+			}
+		}
 		return false;
 	}
 	
@@ -53,11 +65,26 @@ public class StudentModel {
 	 * 		1. 반복문을 통해서 이름값과 매개변수값을 비교
 	 */
 	public static boolean delete(String name) {
+		for (int i = 0; i < allData.length; i++) {
+			if(allData[i] != null && allData[i].getName().equals(name)) {
+				allData[i].setName(null);
+				return true;
+			} else {
+				System.out.println("존재하는 student 없음");
+				return false;
+			}
+		}
 		return false;
 	}
 
 	// 수정 : 이름으로 검색 -> 학생의 이름이 있다면 -> 한살 추가 // updateAge
 	public static Student updateAge(String name) {
+		for (int i = 0; i < allData.length; i++) {
+			if(allData[i] != null && allData[i].getName().equals(name)) {
+				allData[i].setAge(i +1);
+				return allData[i];
+			}
+		}
 		return null;
 	}
 }
